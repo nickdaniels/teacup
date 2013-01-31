@@ -117,6 +117,9 @@ class UIViewController
 
   def viewWillAppear(animated)
     old_viewWillAppear(animated)
+
+    return if Teacup.configuration.instant_style
+
     self.view.restyle! unless @teacup_view_appeared
     if defined? NSLayoutConstraint
       self.view.apply_constraints

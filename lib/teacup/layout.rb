@@ -121,6 +121,14 @@ module Teacup
       end
       view.stylename = name
       if properties
+        # Prevent restyle if restyle property = false
+        restyle = properties.delete(:restyle)
+        if restyle == false
+          Teacup.should_restyle! if should_restyle
+          should_restyle = false
+        end
+        properties = nil if properties.empty?
+
         view.style(properties) if properties
       end
 
