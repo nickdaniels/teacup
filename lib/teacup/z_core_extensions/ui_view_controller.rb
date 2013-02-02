@@ -220,7 +220,7 @@ class UIViewController
   end
 
   def willAnimateRotationToInterfaceOrientation(orientation, duration:duration)
-    view.restyle!(orientation)
+    view.restyle!(orientation) if Teacup.configuration.restyle_on_rotation == true
   end
 
 end
